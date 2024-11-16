@@ -7,12 +7,10 @@ const protectedRoute = createRouteMatcher([
   "/previous",
   "/recordings",
   "/personal-room",
-  "/sign-in(.*)",
-  "/sign-up(.*)",
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  if (!protectedRoute(request)) {
+  if (protectedRoute(request)) {
     await auth.protect();
   }
 });
